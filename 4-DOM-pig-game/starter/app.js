@@ -78,8 +78,7 @@ document.querySelector(".btn-hold").addEventListener("click", () => {
 
 		// Check if player won the game
 		if (scores[activePlayer] >= 20) {
-			document.querySelector(`#name-${activePlayer}`).textContent =
-				"Winner!";
+			document.querySelector(`#name-${activePlayer}`).textContent = "Winner!";
 			document.querySelector(".dice").style.display = "none";
 			document
 				.querySelector(`.player-${activePlayer}-panel`)
@@ -122,4 +121,7 @@ document.querySelector(".btn-new").addEventListener("click", () => {
 	// Reset player names
 	document.querySelector("#name-0").textContent = "Player 1";
 	document.querySelector("#name-1").textContent = "Player 2";
+
+	// After clicking the new game button, set gamePlaying back to true to continue playin
+	gamePlaying = true;
 });
