@@ -20,6 +20,7 @@ prevScore = 0;
 
 //  Set the Dice to not appear at the beginning
 document.querySelector(".dice").style.display = "none";
+document.querySelector(".dice-2").style.display = "none";
 
 document.getElementById("score-0").textContent = "0";
 document.getElementById("score-1").textContent = "0";
@@ -41,7 +42,8 @@ function nextPlayer() {
 	document.querySelector(".player-1-panel").classList.toggle("active");
 
 	// Hide dice again
-	document.querySelector(".dice").style.display = "none";
+	ddocument.querySelector(".dice").style.display = "none";
+	document.querySelector(".dice-2").style.display = "none";
 }
 
 // Event listeners
@@ -49,22 +51,29 @@ document.querySelector(".btn-roll").addEventListener("click", () => {
 	if (gamePlaying) {
 		// 1. Random number
 		let dice = Math.floor(Math.random() * 6) + 1;
+		let dice2 = Math.floor(Math.random() * 6) + 1;
 
 		// 2. Display the result
-		let diceDOM = document.querySelector(".dice");
-		diceDOM.style.display = "block";
-		diceDOM.src = `dice-${dice}.png`;
+		document.querySelector(".dice").style.display = "block";
+		document.querySelector(".dice-2").style.display = "block";
+		document.querySelector(".dice").src = `dice-${dice}.png`;
+		document.querySelector(".dice-2").src = `dice-${dice2}.png`;
 
 		// 3. Update the round score if the rolled number was NOT a 1
+		/*
 		if (dice === 6 && prevScore === 6) {
 			// Player losses
 			scores[activePlayer] = 0;
 			document.querySelector(`#score-${activePlayer}`).textContent = "0";
 			nextPlayer();
 			console.log("Current player has just lost the game");
-		} else if (dice !== 1) {
-			// Add score
-			roundScore += dice;
+		} else 
+		*/
+
+		if (dice !== 1 && dice2 !== 1) {
+			// Add score to dice 1
+			roundScore += dice + dice2;
+			//
 			document.querySelector(
 				`#current-${activePlayer}`
 			).textContent = roundScore;
@@ -79,6 +88,10 @@ document.querySelector(".btn-roll").addEventListener("click", () => {
 
 document.querySelector(".btn-hold").addEventListener("click", () => {
 	if (gamePlaying) {
+		// Hide dices again
+		document.querySelector(".dice").style.display = "none";
+		document.querySelector(".dice-2").style.display = "none";
+
 		// add CURRENT score to GLOBAL score
 		scores[activePlayer] += roundScore;
 
@@ -97,9 +110,9 @@ document.querySelector(".btn-hold").addEventListener("click", () => {
 
 		// Check if player won the game
 		if (scores[activePlayer] >= winningScore) {
-			document.querySelector(`#name-${activePlayer}`).textContent =
-				"Winner!";
+			document.querySelector(`#name-${activePlayer}`).textContent = "Winner!";
 			document.querySelector(".dice").style.display = "none";
+			document.querySelector(".dice-2").style.display = "none";
 			document
 				.querySelector(`.player-${activePlayer}-panel`)
 				.classList.add("winner");
@@ -128,6 +141,7 @@ document.querySelector(".btn-new").addEventListener("click", () => {
 
 	//  Set the Dice to not appear at the beginning
 	document.querySelector(".dice").style.display = "none";
+	document.querySelector(".dice-2").style.display = "none";
 
 	// Remove winner Flag
 	document.querySelector(`.player-0-panel`).classList.remove("winner");
