@@ -88,21 +88,69 @@ console.log(age);
 console.log(obj.city);
 */
 
+/*
+
 const years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
-    let arrRes = [];
+	let arrRes = [];
 
-    for (let i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));
-    }
+	for (let i = 0; i < arr.length; i++) {
+		arrRes.push(fn(arr[i]));
+	}
 
-    return arrRes;
+	return arrRes;
+}
+
+function isFullAge(el) {
+	return el >= 18;
+}
+
+function maxHeartRate(el) {
+	if (el >= 18 && el <= 81) {
+		return Math.round(206.9 - 0.67 * el);
+	} else {
+		return -1;
+	}
 }
 
 function calculateAge(el) {
-    return 2019 - el;
+	return 2019 - el;
 }
 
 const ages = arrayCalc(years, calculateAge);
 console.log(ages);
+
+const fullAges = arrayCalc(ages, isFullAge);
+console.log(fullAges);
+
+const rates = arrayCalc(ages, maxHeartRate);
+console.log(rates);
+
+*/
+
+// Lecture : Functions returning functions
+
+const interviewQuestion = job => {
+	if (job === "designer") {
+		return function(name) {
+			console.log(`${name}, can you please explain what UX design is?`);
+		};
+	} else if (job === "teacher") {
+		return function(name) {
+			console.log(`What subject do you teach, ${name}`);
+		};
+	} else {
+		return function(name) {
+			console.log(`Hello ${name}, what do you do?`);
+		};
+	}
+};
+
+// Teacher question
+const teacherQuestion = interviewQuestion("teacher");
+teacherQuestion("Hector");
+
+// Designer question
+const designerQuestion = interviewQuestion("designer");
+designerQuestion("Edward");
