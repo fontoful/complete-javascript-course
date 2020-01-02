@@ -129,22 +129,24 @@ console.log(rates);
 
 */
 
-// Lecture : Functions returning functions
+/////////////////////
+///////  Lecture : Functions returning functions
 
+/*
 const interviewQuestion = job => {
-	if (job === "designer") {
-		return function(name) {
-			console.log(`${name}, can you please explain what UX design is?`);
-		};
-	} else if (job === "teacher") {
-		return function(name) {
-			console.log(`What subject do you teach, ${name}`);
-		};
-	} else {
-		return function(name) {
-			console.log(`Hello ${name}, what do you do?`);
-		};
-	}
+    if (job === "designer") {
+        return function(name) {
+            console.log(`${name}, can you please explain what UX design is?`);
+        };
+    } else if (job === "teacher") {
+        return function(name) {
+            console.log(`What subject do you teach, ${name}`);
+        };
+    } else {
+        return function(name) {
+            console.log(`Hello ${name}, what do you do?`);
+        };
+    }
 };
 
 // Teacher question
@@ -154,3 +156,32 @@ teacherQuestion("Hector");
 // Designer question
 const designerQuestion = interviewQuestion("designer");
 designerQuestion("Edward");
+*/
+
+/*
+const retirement = retirementAge => {
+    const a = "years until retirement";
+    return function(yearOfBirth) {
+        const age = 2020 - yearOfBirth;
+        console.log(`${retirementAge - age} ${a}`);
+    };
+};
+
+const retirementSV = retirement(60);
+retirementSV(1996);
+*/
+
+function interviewQuestion(job) {
+    return function(name) {
+        if (job === "designer") {
+            console.log(`Hello ${name}, it is so cool that you're a ${job}`);
+        } else if (job === "programmer") {
+            console.log(`Hello ${name}, it's so cool that you're a ${job}`);
+        }
+    };
+}
+
+// interviewQuestion("programmer")("Hector");
+
+//const interviewHector = interviewQuestion("programmer");
+//interviewHector("Hector");
