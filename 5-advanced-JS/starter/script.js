@@ -171,6 +171,7 @@ const retirementSV = retirement(60);
 retirementSV(1996);
 */
 
+/*
 function interviewQuestion(job) {
     return function(name) {
         if (job === "designer") {
@@ -180,8 +181,79 @@ function interviewQuestion(job) {
         }
     };
 }
+*/
 
 // interviewQuestion("programmer")("Hector");
 
 //const interviewHector = interviewQuestion("programmer");
 //interviewHector("Hector");
+
+///////////////////////////
+// Bind, Call and Apply
+/*
+const john = {
+    name: "John",
+    age: 26,
+    job: "Teacher",
+    presentation: function(style, timeOfDay) {
+        if (style === "formal") {
+            console.log(
+                `Good ${timeOfDay}, ladies and gentlemen! I'm ${this.name}, I'm ${this.age} years old and I'm a ${this.job}`
+            );
+        } else if (style === "friendly") {
+            console.log(
+                `Hey! what's up? I'm ${this.name} and I'm a ${this.teacher}, and I'm ${this.age} years old. Have a nice ${timeOfDay}`
+            );
+        }
+    }
+};
+
+const emily = {
+    name: "Emily",
+    age: 30,
+    job: "Developer"
+};
+*/
+
+// john.presentation.call(emily, "formal", "morning");
+
+//////////////////////
+/////// CODING CHALLENGE
+
+class Question {
+    constructor(question, answers, correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
+    }
+}
+
+Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+
+    // this.answers.array.forEach((el, i) => {
+    //     console.log(`${i} : ${el}`);
+    // });
+
+    for (let i = 0; i < this.answers.length; i++) {
+        console.log(`${i} : ${this.answers[i]}`);
+    }
+};
+
+const q1 = new Question(
+    "Is JavaScript the coolest programming language in the world?",
+    ["Yes", "No"],
+    0
+);
+
+const q2 = new Question(
+    `What is the name of this course's teacher?`,
+    ["John", "Michael", "Jonas"],
+    2
+);
+
+const questions = [q1, q2];
+
+const random = Math.floor(Math.random() * 2);
+
+questions[random].displayQuestion();
